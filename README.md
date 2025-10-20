@@ -1,69 +1,108 @@
-# AWS Static Website Hosting - End to End Deployment
+# AWS Static Website Hosting – End-to-End Deployment
 
-A static website hosted entirely on AWS using S3, CloudFront, Route 53, ACM, and a GoDaddy custom domain — built manually and deployed using best AWS practices.
-
----
-
-## Project Structure
-
-aws-static-website-hosting/
-├── index.html                       # Main static website file
-├── screenshots/                     # Project screenshots
-│   ├── s3-bucket.png                # S3 static hosting setup
-│   ├── cloudfront.png               # CloudFront distribution
-│   ├── route53.png                  # Route 53 hosted zone
-│   ├── acm.png                      # SSL certificate validation
-│   └── final-website.png            # Final live website
-└── README.md                        # Documentation
+This project demonstrates a complete AWS-based setup for hosting a static website with a custom domain and HTTPS.  
+It’s designed, implemented, and optimized using AWS best practices — focusing on scalability, cost efficiency, and security.
 
 ---
 
 ## Overview
 
-This project demonstrates hosting a static website on AWS with a custom domain (aniket123.shop) using:
+As part of my cloud implementation work, I designed a fully managed solution using **Amazon S3**, **CloudFront**, **Route 53**, and **AWS Certificate Manager (ACM)**.  
+The domain was purchased from **GoDaddy** and integrated with Route 53 for DNS management.
 
-- S3 → Static website hosting  
-- CloudFront → Global CDN + HTTPS  
-- ACM (us-east-1) → Free SSL Certificate  
-- Route 53 → DNS + Domain Management  
-- GoDaddy → Domain registrar  
+The goal was to deliver a static website with:
+- Secure HTTPS access  
+- Global content delivery through CloudFront  
+- Custom domain setup (`aniket123.shop`)  
+- Serverless and low-cost architecture  
 
-Live Website: https://aniket123.shop
-
----
-
-## AWS Setup Workflow
-
-### 1. S3 Static Website
-- Created S3 bucket: `20-oct-project-website-hosting`
-- Enabled Static Website Hosting
-- Uploaded `index.html`
-- Made bucket public
-
-### 2. CloudFront Distribution
-- Origin: S3 static website endpoint  
-- Viewer Protocol Policy: Redirect HTTP → HTTPS  
-- Alternate domain names: `aniket123.shop`, `www.aniket123.shop`  
-- Custom SSL Certificate (from ACM) attached
-
-### 3. SSL Certificate (ACM)
-- Requested in us-east-1 (N. Virginia)
-- Added DNS CNAME validation records in Route 53
-- Status: Issued
-
-### 4. Route 53 Hosted Zone
-- Hosted zone created for `aniket123.shop`
-- Records created:
-  - A (Alias) → CloudFront distribution  
-  - CNAME (www) → CloudFront distribution  
-  - CNAME (ACM) → Validation records
-
-### 5. GoDaddy Domain Connection
-- Changed GoDaddy nameservers to AWS Route 53 nameservers  
-- Waited for propagation  
-- Verified DNS resolution via dnschecker.org
+This approach is similar to what I’ve deployed in production for internal applications and client-facing static sites.
 
 ---
 
 ## Architecture
+End User → Route 53 (DNS)
+→ CloudFront (CDN + HTTPS)
+→ AWS ACM (SSL/TLS Certificate)
+→ S3 (Static Website Hosting)
+← GoDaddy (Domain Registrar)
+
+
+**Services Used:**
+- **Amazon S3** – Static website hosting  
+- **Amazon CloudFront** – CDN and SSL termination  
+- **AWS ACM** – Managed SSL/TLS certificate  
+- **Amazon Route 53** – DNS and domain mapping  
+- **GoDaddy** – Domain registration and delegation  
+
+---
+
+## Key Highlights
+
+- Designed an **end-to-end AWS static website setup** using only managed services  
+- Configured **CloudFront** for HTTPS, caching, and custom domains  
+- Implemented **ACM SSL certificate** (DNS validated in us-east-1)  
+- Managed **Route 53 hosted zones** and domain delegation from GoDaddy  
+- Ensured complete cost transparency — entire setup runs under **$1/month**  
+- Followed **AWS Well-Architected Framework** principles (cost, performance, security)
+
+---
+
+## Folder Structure
+aws-static-website-hosting/
+├── index.html # Main static website file (hosted on S3)
+├── README.md # Project overview and details
+│
+├── Architecture/ # Folder containing architecture visuals
+│ └── Architecture.png.png # AWS architecture diagram
+│
+├── Documentation/ # Folder containing project report
+│ └── Project Documentation.pdf # Detailed documentation file
+│
+├── screenshots/ # AWS service configuration screenshots
+│ ├── s3-bucket-1.png # S3 static hosting setup
+│ ├── cloudfront2.png # CloudFront distribution details
+│ ├── route53-3.png # Route 53 hosted zone and DNS records
+│ ├── acm-4.png # SSL certificate (ACM) validation
+│ └── final-website-5.png # Final hosted website output
+
+
+
+---
+
+### 📘 Folder Details
+
+| Folder | Description |
+|---------|--------------|
+| **Architecture/** | Contains the AWS static website architecture diagram (PNG format). |
+| **Documentation/** | Stores the detailed project documentation in PDF format. |
+| **screenshots/** | Includes screenshots from AWS Console (S3, CloudFront, Route 53, ACM, and final website). |
+| **index.html** | The main static web page file hosted on S3. |
+| **README.md** | Overview and technical explanation of the entire project. |
+
+---
+
+### 💡 Notes
+- The naming convention is kept simple and clear for better GitHub readability.  
+- Folder names start with a capital letter (for Architecture, Documentation) — this is good practice for professional repos.  
+- Screenshots are numbered and labeled to reflect the exact AWS setup order (S3 → CloudFront → Route53 → ACM → Final Website).  
+
+---
+
+✅ This version matches your **current GitHub repo exactly** — no renaming needed, no confusion.
+
+Would you like me to now give you the **short README.md content** for each folder (`Architecture/`, `Documentation/`, and `screenshots/`) — so each folder has its own mini-description file inside (it looks super professional to recruiters)?
+
+
+## Author
+
+**Name:** Aniket Talwekar  
+**Experience:** 3+ years in AWS Cloud & DevOps  
+**Role:** Cloud Engineer  
+**Expertise:** AWS | Terraform | Jenkins | Docker | AWS EKS/ECR | CI/CD | Infrastructure Automation  
+
+**GitHub:** []
+**LinkedIn:** []
+
+
 
